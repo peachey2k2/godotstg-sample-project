@@ -1,74 +1,28 @@
-[gd_scene load_steps=30 format=3 uid="uid://ckforhmmtiqcq"]
+[gd_scene load_steps=23 format=3 uid="uid://ckforhmmtiqcq"]
 
-[ext_resource type="Script" path="res://scripts/Player.gd" id="1_s12qt"]
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_w2do4"]
+[ext_resource type="PackedScene" uid="uid://bkqtrajs5hm52" path="res://scenes/Player.tscn" id="2_ae8mh"]
 [ext_resource type="Script" path="res://addons/GodotSTG/BattleController.cs" id="2_y27fh"]
 [ext_resource type="Shader" path="res://addons/GodotSTG/BulletModulate.gdshader" id="3_8y7i3"]
 [ext_resource type="Script" path="res://addons/GodotSTG/resources/STGBar.cs" id="3_ad4ow"]
+[ext_resource type="PackedScene" uid="uid://22vt1unvpx3g" path="res://scenes/Enemy.tscn" id="3_r30ae"]
 [ext_resource type="Script" path="res://addons/GodotSTG/resources/STGSpell.cs" id="4_6l1ol"]
 [ext_resource type="Script" path="res://addons/GodotSTG/resources/STGStats.cs" id="5_s2jks"]
 [ext_resource type="Script" path="res://addons/GodotSTG/resources/STGSequence.cs" id="6_op72d"]
+[ext_resource type="Script" path="res://addons/GodotSTG/resources/STGCustomData.cs" id="7_qwusa"]
 [ext_resource type="Script" path="res://addons/GodotSTG/resources/STGBulletModifier.cs" id="7_vt7t2"]
 [ext_resource type="Script" path="res://addons/GodotSTG/spawners/CircularSpawner.cs" id="8_usaax"]
-[ext_resource type="Script" path="res://scripts/Counters.gd" id="10_03hg8"]
 [ext_resource type="Texture2D" uid="uid://lmm3r721718d" path="res://assets/overlay.png" id="11_fsxq2"]
 [ext_resource type="AudioStream" uid="uid://vxgp708smxeh" path="res://assets/graze.ogg" id="13_yrvro"]
 
-[sub_resource type="Gradient" id="Gradient_gclq3"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.874809)
-colors = PackedColorArray(0, 0, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_24cji"]
-gradient = SubResource("Gradient_gclq3")
-width = 48
-height = 48
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0, 0.5)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_lcdqb"]
-radius = 5.0
-
-[sub_resource type="Gradient" id="Gradient_iv552"]
-offsets = PackedFloat32Array(0, 0.363359, 0.7, 0.9, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0.494118, 0.741176, 1, 0, 0.494118, 0.741176, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2q1yj"]
-gradient = SubResource("Gradient_iv552")
-width = 20
-height = 20
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0, 0.5)
-
-[sub_resource type="Gradient" id="Gradient_esh4k"]
-offsets = PackedFloat32Array(0, 0.363359, 0.7, 0.9, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0.309804, 0, 0, 0, 0.447059, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_kjj0v"]
-gradient = SubResource("Gradient_esh4k")
-width = 100
-height = 100
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0, 0.5)
-
-[sub_resource type="Gradient" id="Gradient_p88mj"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.874809)
-colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_infvq"]
-gradient = SubResource("Gradient_p88mj")
-width = 48
-height = 48
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0, 0.5)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r66hq"]
 shader = ExtResource("3_8y7i3")
+
+[sub_resource type="Resource" id="Resource_fg2uh"]
+script = ExtResource("7_qwusa")
+name = ""
+bar_color = Color(1, 1, 1, 1)
+shield = false
 
 [sub_resource type="Resource" id="Resource_44n5t"]
 script = ExtResource("7_vt7t2")
@@ -102,13 +56,11 @@ spawners = [SubResource("Resource_cticm")]
 
 [sub_resource type="Resource" id="Resource_8auy0"]
 script = ExtResource("4_6l1ol")
-name = ""
-health = 0
+custom_data = SubResource("Resource_fg2uh")
+health = 100
 time = 100
-bar_color = Color(1, 1, 1, 1)
 enemy_pos = Vector2(0.5, 0.2)
 enemy_movement = 0
-shield = 0
 wait_before = 1.0
 wait_between = 0.0
 sequence_flags = 0
@@ -116,14 +68,14 @@ sequences = [SubResource("Resource_bxyxj")]
 
 [sub_resource type="Resource" id="Resource_8rjsh"]
 script = ExtResource("3_ad4ow")
-spells = [SubResource("Resource_8auy0")]
+spells = [SubResource("Resource_8auy0"), SubResource("Resource_8auy0")]
 
 [sub_resource type="Resource" id="Resource_517qb"]
 script = ExtResource("5_s2jks")
 player_position = Vector2(0.5, 0.8)
 bars = [SubResource("Resource_8rjsh")]
 
-[node name="Control" type="Control"]
+[node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -134,37 +86,11 @@ script = ExtResource("1_w2do4")
 
 [node name="Arena" type="CanvasLayer" parent="."]
 
-[node name="Player" type="Area2D" parent="Arena"]
-position = Vector2(497, 574)
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-script = ExtResource("1_s12qt")
+[node name="Player" parent="Arena" instance=ExtResource("2_ae8mh")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Arena/Player"]
-texture = SubResource("GradientTexture2D_24cji")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Player"]
-z_index = 1
-shape = SubResource("CircleShape2D_lcdqb")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
-
-[node name="Indicators" type="Node2D" parent="Arena/Player"]
-modulate = Color(1, 1, 1, 0)
-
-[node name="Hitbox" type="Sprite2D" parent="Arena/Player/Indicators"]
-texture = SubResource("GradientTexture2D_2q1yj")
-
-[node name="GrazeBox" type="Sprite2D" parent="Arena/Player/Indicators"]
-texture = SubResource("GradientTexture2D_kjj0v")
-
-[node name="Enemy" type="Area2D" parent="Arena"]
-position = Vector2(324, 143)
-
-[node name="Sprite2D" type="Sprite2D" parent="Arena/Enemy"]
-texture = SubResource("GradientTexture2D_infvq")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Enemy"]
+[node name="Enemy" parent="Arena" instance=ExtResource("3_r30ae")]
+collision_layer = 6
+collision_mask = 0
 
 [node name="BattleController" type="Node2D" parent="Arena" node_paths=PackedStringArray("player", "enemy")]
 material = SubResource("ShaderMaterial_r66hq")
@@ -187,13 +113,13 @@ texture = ExtResource("11_fsxq2")
 
 [node name="Counters" type="Panel" parent="UI"]
 anchors_preset = -1
-anchor_right = 0.153458
-anchor_bottom = 0.114056
-offset_left = 700.0
-offset_top = 302.0
-offset_right = 699.68
-offset_bottom = 301.88
-script = ExtResource("10_03hg8")
+anchor_top = -0.341667
+anchor_right = 0.188875
+anchor_bottom = -0.181778
+offset_left = 702.0
+offset_top = 427.0
+offset_right = 701.68
+offset_bottom = 426.88
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Counters"]
@@ -244,6 +170,26 @@ grow_vertical = 2
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="Power" type="Label" parent="UI/Counters/VBoxContainer"]
+layout_mode = 2
+text = "Power:"
+vertical_alignment = 1
+
+[node name="Value" type="Label" parent="UI/Counters/VBoxContainer/Power"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="Graze" type="Label" parent="UI/Counters/VBoxContainer"]
 layout_mode = 2
 text = "Graze:"
@@ -264,64 +210,6 @@ grow_vertical = 2
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="HealthBar" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 55.0
-offset_top = 31.0
-offset_right = -345.0
-offset_bottom = 41.0
-grow_horizontal = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/HealthBar"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -5.0
-offset_right = 100.0
-offset_bottom = 5.0
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="UI/HealthBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ColorRect2" type="ColorRect" parent="UI/HealthBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ColorRect3" type="ColorRect" parent="UI/HealthBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ColorRect4" type="ColorRect" parent="UI/HealthBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/HealthBar"]
-custom_minimum_size = Vector2(440, 10)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -5.0
-offset_bottom = 5.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="ColorRect4" type="ColorRect" parent="UI/HealthBar/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ColorRect5" type="ColorRect" parent="UI/HealthBar/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -5
 
@@ -337,4 +225,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Graze" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("13_yrvro")
+volume_db = -20.0
+
+[node name="Spawn" type="AudioStreamPlayer" parent="Audio"]
 volume_db = -20.0

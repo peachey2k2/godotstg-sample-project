@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://bkqtrajs5hm52"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_hspak"]
+
+[sub_resource type="Gradient" id="Gradient_gclq3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.874809)
+colors = PackedColorArray(0, 0, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_24cji"]
+gradient = SubResource("Gradient_gclq3")
+width = 48
+height = 48
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lcdqb"]
+radius = 5.0
+
+[sub_resource type="Gradient" id="Gradient_iv552"]
+offsets = PackedFloat32Array(0, 0.363359, 0.7, 0.9, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0.494118, 0.741176, 1, 0, 0.494118, 0.741176, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2q1yj"]
+gradient = SubResource("Gradient_iv552")
+width = 20
+height = 20
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_esh4k"]
+offsets = PackedFloat32Array(0, 0.363359, 0.7, 0.9, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0.309804, 0, 0, 0, 0.447059, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kjj0v"]
+gradient = SubResource("Gradient_esh4k")
+width = 100
+height = 100
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.5)
+
+[node name="Player" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_hspak")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_24cji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+shape = SubResource("CircleShape2D_lcdqb")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Indicators" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Hitbox" type="Sprite2D" parent="Indicators"]
+texture = SubResource("GradientTexture2D_2q1yj")
+
+[node name="GrazeBox" type="Sprite2D" parent="Indicators"]
+texture = SubResource("GradientTexture2D_kjj0v")

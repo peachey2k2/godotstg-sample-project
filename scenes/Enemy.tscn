@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://22vt1unvpx3g"]
+
+[ext_resource type="Texture2D" uid="uid://1ci0gooo4ktu" path="res://assets/Sprite-0001.png" id="1_fa5lh"]
+
+[sub_resource type="Gradient" id="Gradient_p88mj"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.874809)
+colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_infvq"]
+gradient = SubResource("Gradient_p88mj")
+width = 48
+height = 48
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ux3tx"]
+radius = 22.0227
+
+[node name="Enemy" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_infvq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ux3tx")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+z_index = 20
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 192.0
+offset_bottom = 192.0
+scale = Vector2(0.5, 0.5)
+max_value = 1.0
+step = 0.0
+fill_mode = 5
+texture_progress = ExtResource("1_fa5lh")
