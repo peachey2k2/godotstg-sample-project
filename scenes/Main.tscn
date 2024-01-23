@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ckforhmmtiqcq"]
+[gd_scene load_steps=25 format=3 uid="uid://ckforhmmtiqcq"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_w2do4"]
 [ext_resource type="PackedScene" uid="uid://bkqtrajs5hm52" path="res://scenes/Player.tscn" id="2_ae8mh"]
@@ -72,8 +72,14 @@ spells = [SubResource("Resource_8auy0"), SubResource("Resource_8auy0")]
 
 [sub_resource type="Resource" id="Resource_517qb"]
 script = ExtResource("5_s2jks")
-player_position = Vector2(0.5, 0.8)
 bars = [SubResource("Resource_8rjsh")]
+
+[sub_resource type="Gradient" id="Gradient_td64s"]
+colors = PackedColorArray(0, 0.352941, 0.803922, 1, 0.796078, 0.196078, 0.796078, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oglb3"]
+gradient = SubResource("Gradient_td64s")
+fill_to = Vector2(0.723426, 0.881108)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -87,6 +93,7 @@ script = ExtResource("1_w2do4")
 [node name="Arena" type="CanvasLayer" parent="."]
 
 [node name="Player" parent="Arena" instance=ExtResource("2_ae8mh")]
+position = Vector2(367, 544)
 
 [node name="Enemy" parent="Arena" instance=ExtResource("3_r30ae")]
 collision_layer = 6
@@ -213,13 +220,12 @@ vertical_alignment = 1
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -5
 
-[node name="ColorRect" type="ColorRect" parent="Background"]
-visible = false
+[node name="TextureRect" type="TextureRect" parent="Background"]
 offset_left = 48.0
 offset_top = 24.0
 offset_right = 624.0
 offset_bottom = 696.0
-color = Color(0, 0, 0, 1)
+texture = SubResource("GradientTexture2D_oglb3")
 
 [node name="Audio" type="Node" parent="."]
 
