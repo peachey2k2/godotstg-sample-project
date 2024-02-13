@@ -11,6 +11,7 @@ func _physics_process(delta):
 		queue_free()
 
 func _on_area_entered(_area):
-	Global.enemy_health -= 1
-	print(Global.enemy_health)
+	if Global.is_enemy_vulnerable:
+		Global.enemy_health -= 1
+		print(Global.enemy_health)
 	queue_free()

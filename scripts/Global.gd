@@ -7,6 +7,7 @@ extends Node
 @onready var EnemyHealthBar = $/root/Main/Arena/Enemy/HealthBar
 
 var max_health := 0
+var is_enemy_vulnerable := false
 
 var enemy_health := 0:
 	set(val):
