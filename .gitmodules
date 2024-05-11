@@ -1,3 +1,6 @@
 [submodule "addons/GodotSTG"]
 	path = addons/GodotSTG
 	url = https://github.com/peachey2k2/GodotSTG
+[submodule "/home/p/godot/godotstg-sample-project/addons/GodotSTG"]
+	path = /home/p/godot/godotstg-sample-project/addons/GodotSTG
+	url = https://github.com/peachey2k2/GodotSTG.git
