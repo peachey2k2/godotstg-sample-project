@@ -1,85 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://ckforhmmtiqcq"]
+[gd_scene load_steps=9 format=3 uid="uid://ckforhmmtiqcq"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_w2do4"]
 [ext_resource type="PackedScene" uid="uid://bkqtrajs5hm52" path="res://scenes/Player.tscn" id="2_ae8mh"]
-[ext_resource type="Script" path="res://addons/GodotSTG/BattleController.cs" id="2_y27fh"]
-[ext_resource type="Shader" path="res://addons/GodotSTG/BulletModulate.gdshader" id="3_8y7i3"]
-[ext_resource type="Script" path="res://addons/GodotSTG/resources/STGBar.cs" id="3_ad4ow"]
 [ext_resource type="PackedScene" uid="uid://22vt1unvpx3g" path="res://scenes/Enemy.tscn" id="3_r30ae"]
-[ext_resource type="Script" path="res://addons/GodotSTG/resources/STGSpell.cs" id="4_6l1ol"]
-[ext_resource type="Script" path="res://addons/GodotSTG/resources/STGStats.cs" id="5_s2jks"]
-[ext_resource type="Script" path="res://addons/GodotSTG/resources/STGSequence.cs" id="6_op72d"]
-[ext_resource type="Script" path="res://addons/GodotSTG/resources/STGCustomData.cs" id="7_qwusa"]
-[ext_resource type="Script" path="res://addons/GodotSTG/resources/STGBulletModifier.cs" id="7_vt7t2"]
-[ext_resource type="Script" path="res://addons/GodotSTG/spawners/CircularSpawner.cs" id="8_usaax"]
+[ext_resource type="PackedScene" uid="uid://4jw3ouugjakn" path="res://scenes/BattleController.tscn" id="4_h3lhi"]
 [ext_resource type="Texture2D" uid="uid://lmm3r721718d" path="res://assets/overlay.png" id="11_fsxq2"]
 [ext_resource type="AudioStream" uid="uid://vxgp708smxeh" path="res://assets/graze.ogg" id="13_yrvro"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r66hq"]
-shader = ExtResource("3_8y7i3")
-
-[sub_resource type="Resource" id="Resource_fg2uh"]
-script = ExtResource("7_qwusa")
-name = ""
-bar_color = Color(1, 1, 1, 1)
-shield = false
-
-[sub_resource type="Resource" id="Resource_44n5t"]
-script = ExtResource("7_vt7t2")
-bullet_id = 0
-outer_color = Color(1, 0, 0, 1)
-inner_color = Color(1, 1, 1, 1)
-speed = 100.0
-lifespan = 0.0
-tweens = []
-
-[sub_resource type="Resource" id="Resource_cticm"]
-script = ExtResource("8_usaax")
-init_angle = 0.0
-amount = 8
-repeat = 9999999999
-tilt = 11.5
-delta_tilt = 0.0
-distance = 0.0
-delay = 0.1
-position = Vector2(0, 0)
-position_type = 1
-rotation_speed = 0.0
-bullet = SubResource("Resource_44n5t")
-
-[sub_resource type="Resource" id="Resource_bxyxj"]
-script = ExtResource("6_op72d")
-end_at_hp = -1
-end_at_time = -1
-persist = false
-spawners = [SubResource("Resource_cticm")]
-
-[sub_resource type="Resource" id="Resource_8auy0"]
-script = ExtResource("4_6l1ol")
-custom_data = SubResource("Resource_fg2uh")
-health = 100
-time = 100
-enemy_pos = Vector2(0.5, 0.2)
-enemy_movement = 0
-wait_before = 1.0
-wait_between = 0.0
-sequence_flags = 0
-sequences = [SubResource("Resource_bxyxj")]
-
-[sub_resource type="Resource" id="Resource_8rjsh"]
-script = ExtResource("3_ad4ow")
-spells = [SubResource("Resource_8auy0"), SubResource("Resource_8auy0")]
-
-[sub_resource type="Resource" id="Resource_517qb"]
-script = ExtResource("5_s2jks")
-bars = [SubResource("Resource_8rjsh")]
-
 [sub_resource type="Gradient" id="Gradient_td64s"]
-colors = PackedColorArray(0, 0.352941, 0.803922, 1, 0.796078, 0.196078, 0.796078, 1)
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.13, 0.13, 0.13, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oglb3"]
 gradient = SubResource("Gradient_td64s")
-fill_to = Vector2(0.723426, 0.881108)
+fill_to = Vector2(0, 0)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -99,10 +33,7 @@ position = Vector2(367, 544)
 collision_layer = 6
 collision_mask = 0
 
-[node name="BattleController" type="Node2D" parent="Arena" node_paths=PackedStringArray("player", "enemy")]
-material = SubResource("ShaderMaterial_r66hq")
-script = ExtResource("2_y27fh")
-stats = SubResource("Resource_517qb")
+[node name="BattleController" parent="Arena" node_paths=PackedStringArray("player", "enemy") instance=ExtResource("4_h3lhi")]
 player = NodePath("../Player")
 enemy = NodePath("../Enemy")
 arena_rect = Rect2(48, 24, 576, 672)

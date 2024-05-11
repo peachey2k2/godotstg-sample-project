@@ -16,3 +16,10 @@ mono_crash.*.json
 
 # Push script
 .push
+
+# gd-plug clone directory
+.plugged/
+
+# plugins (excluded since they're handled by gd-plug)
+addons/*
+!addons/gd-plug/

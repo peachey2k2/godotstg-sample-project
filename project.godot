@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-STGGlobal="*res://addons/GodotSTG/STGGlobal.cs"
 Global="*res://scripts/Global.gd"
+STGGlobal="*res://addons/GodotSTG/nodes/STGGlobal.cs"
 
 [display]
 
@@ -33,14 +33,7 @@ project/assembly_name="GodotSTG Sample Project"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GodotSTG/plugin.cfg")
-
-[godotstg]
-
-general/graze_radius=50.0
-general/pool_size=5000
-general/enable_panel_at_start=true
-general/panel_position=1
+enabled=PackedStringArray("res://addons/GodotSTG/plugin.cfg", "res://addons/gd-plug-ui/plugin.cfg")
 
 [input]
 

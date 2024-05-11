@@ -14,7 +14,6 @@ var enemy_health := 0:
 		enemy_health = val
 		EnemyHealthBar.value = float(val)/max_health
 		STGGlobal.update_health(val)
-		#STGGlobal.damage_taken.emit(val) #directly calling the signal can crash the game.
 
 var power := 0.0:
 	set(val):
